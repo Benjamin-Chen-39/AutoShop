@@ -41,5 +41,14 @@ namespace AutoStore
         public int Origin { get { return _origin; } }
         public string CarName { get { return _carName; } }
         public decimal Price { get { return _price; } }
+
+
+        public override string ToString()
+        {
+            string car = $"Name: {this.CarName} MPG: {Mpg} Cylinders: {Cylinder} Displacement: {Displacement} Horsepower: {Horsepower} Weight: {Weight} Acceleration: {Acceleration} Model year: {ModelYear} Origin: {Origin} Price: {Price}";
+            return car;
+        }
     }
+
+
 }

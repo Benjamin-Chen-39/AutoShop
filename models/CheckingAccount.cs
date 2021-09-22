@@ -15,11 +15,16 @@ namespace AutoStore
             {
                 this._balance -= withdrawal;
             }
-
             else
             {
                 Console.WriteLine("Insufficient funds");
             }
         }
+
+        public CheckingAccount(decimal initialAmount)
+        {
+            _balance = initialAmount;
+        }
+        public decimal Balance { get { return _balance; } }
     }
 }

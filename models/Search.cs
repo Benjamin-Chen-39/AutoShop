@@ -13,30 +13,66 @@ namespace AutoStore
             this.sortedList = new List<Car>();
         }
 
-        public List<Car> SearchByPrice(int maxPrice, int minPrice)
+        public List<Car> SearchByPrice(int minPrice, int maxPrice)
         {
             sortedList = (from car in carInventory where car.Price <= maxPrice && car.Price >= minPrice select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
             return sortedList;
         }
         public IEnumerable<Car> SearchByMPG(int minMPG)
         {
             sortedList = (from car in carInventory where car.Mpg >= minMPG select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
             return sortedList;
         }
 
         public IEnumerable<Car> SearchByCylinders(int cylinders)
         {
-            var match = (new[] { 3, 4, 5, 6, 8 }).Any(cylinder => cylinder == cylinders);
-            if (!match) throw new Exception("No cars found with that many cylinders.");
+
             sortedList = (from car in carInventory where car.Cylinder == cylinders select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
             return sortedList;
         }
 
-        public IEnumerable<Car> SearchByM(int minDisplacement, int maxDisplacement)
+        public IEnumerable<Car> SearchByDisplacement(int minDisplacement, int maxDisplacement)
         {
             sortedList = (from car in carInventory where car.Displacement >= minDisplacement && car.Displacement <= maxDisplacement select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
             return sortedList;
         }
+
+        public IEnumerable<Car> SearchByHP(int horsepower)
+        {
+            sortedList = (from car in carInventory where car.Horsepower >= horsepower select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
+            return sortedList;
+        }
+
+        public IEnumerable<Car> SearchByWeight(int minWeight, int maxWeight)
+        {
+            sortedList = (from car in carInventory where car.Displacement >= minWeight && car.Displacement <= maxWeight select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
+            return sortedList;
+        }
+        public IEnumerable<Car> SearchByKeyword(string keyword)
+        {
+            sortedList = (from car in carInventory where car.CarName.Contains(keyword) select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
+            return sortedList;
+        }
+        public IEnumerable<Car> SearchByYear(int year)
+        {
+            sortedList = (from car in carInventory where car.ModelYear == year select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
+            return sortedList;
+        }
+        public IEnumerable<Car> SearchByOrigin(int origin)
+        {
+            sortedList = (from car in carInventory where car.Origin == origin select car).ToList();
+            if (sortedList.Count == 0) throw new Exception("No cars found.");
+            return sortedList;
+        }
+
 
     }
 }
